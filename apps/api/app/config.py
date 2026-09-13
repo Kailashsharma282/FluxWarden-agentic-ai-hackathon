@@ -1,5 +1,6 @@
 import os
-from typing import Literal
+from typing import Any, Literal, Union
+from pydantic import field_validator
 from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
@@ -13,7 +14,29 @@ class Settings(BaseSettings):
     HOST: str = "0.0.0.0"
     PORT: int = int(os.getenv("PORT", 8001))
     DEBUG: bool = True
-    CORS_ORIGINS: list[str] = ["*"]
+    CORS_ORIGINS: Union[list[str], str] = ["*"]
+
+    @field_validator("CORS_ORIGINS", mode="before")
+    @classmethod
+    def parse_cors_origins(cls, v: Any) -> list[str]:
+        if isinstance(v, list):
+            return [str(item) for item in v]
+        if isinstance(v, str):
+            v = v.strip()
+            if not v or v == "*":
+                return ["*"]
+            if v.startswith("[") and v.endswith("]"):
+                try:
+                    import json
+                    parsed = json.loads(v)
+                    if isinstance(parsed, list):
+                        return [str(x) for x in parsed]
+                except Exception:
+                    pass
+            if "," in v:
+                return [x.strip() for x in v.split(",") if x.strip()]
+            return [v]
+        return ["*"]
 
     # Agent Limits (Configurable as per spec)
     MAX_AGENT_STEPS: int = 15
