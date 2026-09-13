@@ -59,6 +59,7 @@ htmlcov/
 *.sqlite3
 *.db
 
-# OS
+# OS & Archives
 .DS_Store
 Thumbs.db
+*.zip
