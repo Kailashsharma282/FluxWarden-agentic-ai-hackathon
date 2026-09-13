@@ -1,0 +1,165 @@
+services:
+  api:
+    build:
+      context: ./apps/api
+      dockerfile: Dockerfile
+    container_name: fluxwarden-api
+    ports:
+      - "8000:8000"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8000
+      - LLM_PROVIDER=mock
+      - DATABASE_URL=postgresql://postgres:fluxwarden_pass@postgres:5432/fluxwarden
+      - REDIS_URL=redis://redis:6379/0
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+  web:
+    build:
+      context: ./apps/web
+      dockerfile: Dockerfile
+    container_name: fluxwarden-web
+    ports:
+      - "3000:80"
+    depends_on:
+      api:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80/"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: fluxwarden-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=fluxwarden_pass
+      - POSTGRES_DB=fluxwarden
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: fluxwarden-redis
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # Simulated Production Topology Nodes (Health checked microservice daemons)
+  payment-api:
+    image: alpine:latest
+    container_name: fluxwarden-sim-payment-api
+    command: /bin/sh -c "while true; do echo 'payment-api telemetry active' | nc -l -p 8081; done"
+    ports:
+      - "8081:8081"
+    healthcheck:
+      test: ["CMD-SHELL", "nc -z 127.0.0.1 8081 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+  auth-service:
+    image: alpine:latest
+    container_name: fluxwarden-sim-auth-service
+    command: /bin/sh -c "while true; do echo 'auth-service telemetry active' | nc -l -p 8082; done"
+    ports:
+      - "8082:8082"
+    healthcheck:
+      test: ["CMD-SHELL", "nc -z 127.0.0.1 8082 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+  order-service:
+    image: alpine:latest
+    container_name: fluxwarden-sim-order-service
+    command: /bin/sh -c "while true; do echo 'order-service telemetry active' | nc -l -p 8083; done"
+    ports:
+      - "8083:8083"
+    healthcheck:
+      test: ["CMD-SHELL", "nc -z 127.0.0.1 8083 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+  monitoring:
+    image: alpine:latest
+    container_name: fluxwarden-sim-monitoring
+    command: /bin/sh -c "while true; do echo 'monitoring telemetry active' | nc -l -p 8084; done"
+    ports:
+      - "8084:8084"
+    healthcheck:
+      test: ["CMD-SHELL", "nc -z 127.0.0.1 8084 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+  log-service:
+    image: alpine:latest
+    container_name: fluxwarden-sim-log-service
+    command: /bin/sh -c "while true; do echo 'log-service telemetry active' | nc -l -p 8085; done"
+    ports:
+      - "8085:8085"
+    healthcheck:
+      test: ["CMD-SHELL", "nc -z 127.0.0.1 8085 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+  deployment-controller:
+    image: alpine:latest
+    container_name: fluxwarden-sim-deployment-controller
+    command: /bin/sh -c "while true; do echo 'deployment-controller active' | nc -l -p 8086; done"
+    ports:
+      - "8086:8086"
+    healthcheck:
+      test: ["CMD-SHELL", "nc -z 127.0.0.1 8086 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+  backup-service:
+    image: alpine:latest
+    container_name: fluxwarden-sim-backup-service
+    command: /bin/sh -c "while true; do echo 'backup-service standby replica healthy' | nc -l -p 8087; done"
+    ports:
+      - "8087:8087"
+    healthcheck:
+      test: ["CMD-SHELL", "nc -z 127.0.0.1 8087 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+volumes:
+  pgdata:
