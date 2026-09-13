@@ -9,13 +9,18 @@
 
 ## Pre-Recorded Demonstration Videos & Audio Voiceovers
 
-All 3 live browser demonstration videos and synchronized voiceover audio tracks are available in [`docs/recordings/`](file:///c:/Users/kaila/OneDrive/Desktop/Projects/FluxWarden-Agentic-AI-Hackathon/docs/recordings):
+The complete video demonstrations are available in standard universal **MP4 format (H.264 + AAC Audio)** and raw WebP streams in [`docs/recordings/`](file:///c:/Users/kaila/OneDrive/Desktop/Projects/FluxWarden-Agentic-AI-Hackathon/docs/recordings):
 
-| Demo | Video Recording | Audio Voiceover | Description |
-|---|---|---|---|
-| **Demo 1** | [`demo_1_overview.webp`](file:///c:/Users/kaila/OneDrive/Desktop/Projects/FluxWarden-Agentic-AI-Hackathon/docs/recordings/demo_1_overview.webp) (27.5 MB) | [`demo_1_overview_audio.wav`](file:///c:/Users/kaila/OneDrive/Desktop/Projects/FluxWarden-Agentic-AI-Hackathon/docs/recordings/demo_1_overview_audio.wav) (4.47 MB) | Platform Overview & Command Center Walkthrough |
-| **Demo 2** | [`demo_2_adaptive_recovery.webp`](file:///c:/Users/kaila/OneDrive/Desktop/Projects/FluxWarden-Agentic-AI-Hackathon/docs/recordings/demo_2_adaptive_recovery.webp) | [`demo_2_adaptive_recovery_audio.wav`](file:///c:/Users/kaila/OneDrive/Desktop/Projects/FluxWarden-Agentic-AI-Hackathon/docs/recordings/demo_2_adaptive_recovery_audio.wav) (5.30 MB) | Deterministic Incident Recovery & Adaptive Replanning (15-step sequence) |
-| **Demo 3** | [`demo_3_chaos_approval.webp`](file:///c:/Users/kaila/OneDrive/Desktop/Projects/FluxWarden-Agentic-AI-Hackathon/docs/recordings/demo_3_chaos_approval.webp) | [`demo_3_chaos_approval_audio.wav`](file:///c:/Users/kaila/OneDrive/Desktop/Projects/FluxWarden-Agentic-AI-Hackathon/docs/recordings/demo_3_chaos_approval_audio.wav) (3.89 MB) | Chaos Lab Scenario Injection, Mission Chat & Human Approval Flow |
+### 🌟 Unified Master Presentation Video (All 3 Demos Merged)
+- **Master Video (MP4)**: [`fluxwarden_master_demo.mp4`](file:///c:/Users/kaila/OneDrive/Desktop/Projects/FluxWarden-Agentic-AI-Hackathon/docs/recordings/fluxwarden_master_demo.mp4) (10.77 MB, 3:42 mins)
+- *Combines the full walkthrough, 15-step adaptive incident recovery, and Chaos Lab with human approvals into one continuous presentation video with narration.*
+
+### Individual Demonstration Videos
+| Demo | MP4 Video (Universal) | WebP Video | Audio Voiceover | Description |
+|---|---|---|---|---|
+| **Demo 1** | [`demo_1_overview.mp4`](file:///c:/Users/kaila/OneDrive/Desktop/Projects/FluxWarden-Agentic-AI-Hackathon/docs/recordings/demo_1_overview.mp4) (8.9 MB) | [`demo_1_overview.webp`](file:///c:/Users/kaila/OneDrive/Desktop/Projects/FluxWarden-Agentic-AI-Hackathon/docs/recordings/demo_1_overview.webp) (27.5 MB) | [`demo_1_overview_audio.wav`](file:///c:/Users/kaila/OneDrive/Desktop/Projects/FluxWarden-Agentic-AI-Hackathon/docs/recordings/demo_1_overview_audio.wav) (4.47 MB) | Platform Overview & Command Center Walkthrough |
+| **Demo 2** | [`demo_2_adaptive_recovery.mp4`](file:///c:/Users/kaila/OneDrive/Desktop/Projects/FluxWarden-Agentic-AI-Hackathon/docs/recordings/demo_2_adaptive_recovery.mp4) (3.3 MB) | [`demo_2_adaptive_recovery.webp`](file:///c:/Users/kaila/OneDrive/Desktop/Projects/FluxWarden-Agentic-AI-Hackathon/docs/recordings/demo_2_adaptive_recovery.webp) | [`demo_2_adaptive_recovery_audio.wav`](file:///c:/Users/kaila/OneDrive/Desktop/Projects/FluxWarden-Agentic-AI-Hackathon/docs/recordings/demo_2_adaptive_recovery_audio.wav) (5.30 MB) | Deterministic Incident Recovery & Adaptive Replanning (15-step sequence) |
+| **Demo 3** | [`demo_3_chaos_approval.mp4`](file:///c:/Users/kaila/OneDrive/Desktop/Projects/FluxWarden-Agentic-AI-Hackathon/docs/recordings/demo_3_chaos_approval.mp4) (10.5 MB) | [`demo_3_chaos_approval.webp`](file:///c:/Users/kaila/OneDrive/Desktop/Projects/FluxWarden-Agentic-AI-Hackathon/docs/recordings/demo_3_chaos_approval.webp) | [`demo_3_chaos_approval_audio.wav`](file:///c:/Users/kaila/OneDrive/Desktop/Projects/FluxWarden-Agentic-AI-Hackathon/docs/recordings/demo_3_chaos_approval_audio.wav) (3.89 MB) | Chaos Lab Scenario Injection, Mission Chat & Human Approval Flow |
 
 ---
 
